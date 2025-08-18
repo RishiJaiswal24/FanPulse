@@ -136,7 +136,7 @@ const PaymentPage = ({ username }) => {
                         {payments.map((p, i) => {
                             return <li key={i} className='flex items-center gap-2'>
                                 <img src="/avatar.gif " width={33} alt="avatar" />
-                                {p.name} contributed ₹{p.amount / 100} with the message: "{p.message}"
+                                {p.name} contributed ₹{p.amount / 100} with the message: &quot;{p.message}&quot;
                             </li>
                         })}
                     </ul>

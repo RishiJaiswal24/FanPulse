@@ -24,7 +24,7 @@ export const POST=async (req)=>{
         const session = await getServerSession(authOptions);
         let payerProfilePic = session?.user?.image || "";
 
-        const updatePayment=await Payment.findOneAndUpdate({oid:body.razorpay_order_id},{done:true,profiepic: payerProfilePic}, {new:true});
+        const updatePayment=await Payment.findOneAndUpdate({oid:body.razorpay_order_id},{done:true,profilepic: payerProfilePic}, {new:true});
         return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}/${updatePayment.to_user}?paymentdone=true`)
     }
     else{

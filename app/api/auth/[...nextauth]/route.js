@@ -9,7 +9,7 @@ import { MongoClient } from 'mongoose'
 import User from '@/app/models/User'
 import Payment from '@/app/models/Payment'
 import connectDB from '@/app/db/connectDb'
-export const authoption = NextAuth({
+export const authOption = NextAuth({
   providers: [
     // OAuth authentication providers...
     GithubProvider({
@@ -63,4 +63,4 @@ export const authoption = NextAuth({
 
 })
 
-export { authoption as GET, authoption as POST }
+export { authOption as GET, authOption as POST }

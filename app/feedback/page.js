@@ -1,6 +1,6 @@
 import React from 'react'
 import FeedbackPage from '../models/FeedbackPage';
-const page = () => {
+const Page = () => {
   return (
     <div>
       <FeedbackPage/>
@@ -8,7 +8,7 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
 
 export const metadata = {
   title: "Feedback – Fan Pulse",

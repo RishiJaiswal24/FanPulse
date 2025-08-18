@@ -67,7 +67,7 @@ export default function Home() {
           <img className="border-2 border-gray-600" src="/support_creater.jpg" width={400} height={400} alt="" />
           <div className="flex flex-col gap-10">
             <h1 className="font-bold text-3xl underline">Connect with Your Supporters</h1>
-            <span className="font-bold text-xl">Turn your audience into your biggest supporters. Whether you're an artist, gamer, or educator, give your fans a simple way to show love for your work.</span>
+            <span className="font-bold text-xl">Turn your audience into your biggest supporters. Whether you&apos;re an artist, gamer, or educator, give your fans a simple way to show love for your work.</span>
           </div>
         </div>
         <div className="bg-white h-1 opacity-10"></div>

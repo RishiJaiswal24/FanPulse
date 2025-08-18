@@ -22,7 +22,7 @@ export default function About() {
             FanPulse is a personal project built using the{" "}
             <span className="text-purple-400">MERN stack</span> and{" "}
             <span className="text-purple-400">Next.js</span> with{" "}
-            <span className="text-purple-400">Tailwind CSS</span>. It’s designed
+            <span className="text-purple-400">Tailwind CSS</span>. It&apos;s designed
             to be a simple yet powerful crowdfunding platform for creators —
             whether you’re a musician, gamer, artist, or educator. Your fans can
             directly contribute to your work and help fuel your creative journey.
@@ -42,7 +42,7 @@ export default function About() {
               <Link href="/FanPulseDev" target="_blank">FanPulseDev</Link>
             </span>{" "}— these pages are set up for dummy payments.
             <span className="text-green-400 font-bold"> FanPulseDev is only for testing dynamic content and interface behavior, so it cannot receive money.</span> Use the UPI ID{" "}
-            <span className="text-purple-400 font-semibold">test@razorpay</span>{" "}in Razorpay’s <span className="font-semibold">Test Mode</span>.
+            <span className="text-purple-400 font-semibold">test@razorpay</span>{" "}in Razorpay&apos;s <span className="font-semibold">Test Mode</span>.
           </p>
 
           <p className="text-gray-300 text-lg leading-relaxed mb-8 text-center">
@@ -74,7 +74,7 @@ export default function About() {
             Built with Passion
           </h2>
           <p className="text-gray-300 text-lg leading-relaxed text-center">
-            FanPulse is more than just a demo project — it’s a learning journey in
+            FanPulse is more than just a demo project — it&apos;s a learning journey in
             full-stack development, payment gateway integration, and modern UI
             design. As a creator myself, I understand how valuable direct audience
             support can be, and FanPulse is my way of making that process easier
