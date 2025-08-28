@@ -46,7 +46,7 @@ const Page = () => {
               src="https://www.svgrepo.com/show/512317/github-142.svg"
               alt="GitHub"
               className="h-6 w-6"
-            />
+            />  
             Continue with GitHub
           </button>
 
