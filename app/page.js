@@ -84,7 +84,7 @@ export default function Home() {
           <img className="border-2 border-gray-600" src="/creative_journey.jpg" width={400} height={400} alt="" />
           <div className="flex flex-col gap-10">
             <h1 className="font-bold text-3xl underline">Grow Your Creative Journey</h1>
-            <span className="font-bold text-xl">Use the funds to invest in better tools, create more content, and take your passion to the next level all powered by the people who believe in yoy.</span>
+            <span className="font-bold text-xl">Use the funds to invest in better tools, create more content, and take your passion to the next level all powered by the people who believe in you.</span>
           </div>
         </div>
       </div>

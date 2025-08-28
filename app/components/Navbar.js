@@ -59,29 +59,32 @@ const Navbar = () => {
           </form>
         </div>
 
-
-
-
-
-
-
-
         <div className="relative flex items-center gap-2">
           {session ? (
             <>
               <div className="md:block hidden">
                 <ul className="flex" >
                   <li><Link href={`/`} className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Home</Link></li>
-                  <li><Link href={"/dashboard"} className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Dashboard</Link></li>
-                  {session?.user?.name && (
-                    <li><Link href={`/${session.user.name}`} className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Your Page</Link></li>
-                  )}
-                  <li>
+
+                  {session.user.role !== "guest" ? (<>
+                    <li><Link href={"/dashboard"} className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Dashboard</Link></li>
+                    {session?.user?.name && (
+                      <li><Link href={`/${session.user.name}`} className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Your Page</Link></li>
+                    )}
+                  </>) : null}
+
+                  {session.user.role !== "guest" ? (<li>
                     <button
                       onClick={() => signOut({ callbackUrl: "/" })}
                       className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Sign out
                     </button>
-                  </li>
+                  </li>) :
+                    (<li>
+                      <button
+                        onClick={() => signOut({ callbackUrl: "/" })}
+                        className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Leave
+                      </button>
+                    </li>)}
                 </ul>
               </div>
               <button
@@ -108,8 +111,12 @@ const Navbar = () => {
               >
                 <ul className="py-2 text-sm">
                   <li><Link href="/" className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Home</Link></li>
-                  <li><Link href="/dashboard" className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Dashboard</Link></li>
-                  <li><Link href={`/${session.user.name}`} className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Your Page</Link></li>
+                  {session.user.role !== "guest" ? (
+                    <>
+                      <li><Link href="/dashboard" className="block px-4 py-2 hover:bg-slate-800 hover:font-bold">Dashboard</Link></li>
+                      <li><Link href={`/${session.user.name}`} className="block px-4 py-2 hover:bg-slate-800 hover:font-bold">Your Page</Link></li>
+                    </>
+                  ) : null}
                   <li><Link href="/feedback" className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Feedbacks</Link></li>
                   <li>
                     <button

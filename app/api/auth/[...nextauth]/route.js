@@ -1,66 +1,88 @@
-import NextAuth from 'next-auth'
-// import AppleProvider from 'next-auth/providers/apple'
-// import FacebookProvider from 'next-auth/providers/facebook'
-// import GoogleProvider from 'next-auth/providers/google'
-// import EmailProvider from 'next-auth/providers/email'
-import GithubProvider from "next-auth/providers/github"
-import mongoose from 'mongoose'
-import { MongoClient } from 'mongoose'
-import User from '@/app/models/User'
-import Payment from '@/app/models/Payment'
-import connectDB from '@/app/db/connectDb'
-export const authOption = NextAuth({
+
+import NextAuth from "next-auth";
+import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { v4 as uuidv4 } from "uuid";
+import connectDB from "@/app/db/connectDb";
+import User from "@/app/models/User";
+
+export const authOptions = {
   providers: [
-    // OAuth authentication providers...
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
-    })
-    // AppleProvider({
-    //   clientId: process.env.APPLE_ID,
-    //   clientSecret: process.env.APPLE_SECRET
-    // }),
-    // FacebookProvider({
-    //   clientId: process.env.FACEBOOK_ID,
-    //   clientSecret: process.env.FACEBOOK_SECRET
-    // }),
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_ID,
-    //   clientSecret: process.env.GOOGLE_SECRET
-    // }),
-    // // Passwordless / email sign in
-    // EmailProvider({
-    //   server: process.env.MAIL_SERVER,
-    //   from: 'NextAuth.js <no-reply@example.com>'
-    // }),
-  ], callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      if (account.provider === "github") {
-
-        if (!user.email) {
-          console.error("No email returned from GitHub");
-          return false;
-        }
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
+    }),
+    CredentialsProvider({
+      name: "Guest",
+      credentials: {},
+      async authorize() {
+        return {
+          id: uuidv4(),
+          name: "Guest User",
+          email: `guest-${uuidv4()}@guest.local`,
+          role: "guest",
+        };
+      },
+    }),
+  ],
+  callbacks: {
+    async signIn({ user, account }) {
+      if (account.provider === "github" || account.provider === "google") {
         await connectDB();
-        const currentUser = await User.findOne({ email: user.email });
-        if (!currentUser) {
-          const newUser = new User({
+
+        if (!user.email) return false;
+
+        let dbUser = await User.findOne({ email: user.email });
+        if (!dbUser) {
+          dbUser = new User({
             email: user.email,
             username: user.email.split("@")[0],
           });
-          await newUser.save();
-          user.name = newUser.username;
+          await dbUser.save();
         }
-        return true;
+        user.name = dbUser.username;
+        user.role = "user";
+        user.id = dbUser._id.toString();
       }
+      return true;
     },
-    async session({ session, user, token }) {
-      const dbUser = await User.findOne({ email: session.user.email })
-      session.user.name = dbUser.username
-      return session
+
+    async jwt({ token, user }) {
+      // Runs only on sign in
+      if (user) {
+        token.id = user.id ?? uuidv4();
+        token.role = user.role ?? "user";
+        token.email = user.email ?? null;
+      }
+
+      // 🔑 Always fetch latest username from DB
+      if (token.email) {
+        await connectDB();
+        const dbUser = await User.findOne({ email: token.email });
+        if (dbUser) {
+          token.name = dbUser.username; // ✅ keep username in sync
+        }
+      }
+
+      return token;
     },
-  }
 
-})
+    async session({ session, token }) {
+      session.user = {
+        id: token.id,
+        email: token.email,
+        name: token.name, // ✅ now reflects latest db username
+        role: token.role,
+      };
+      return session;
+    },
+  },
+};
 
-export { authOption as GET, authOption as POST }
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };
