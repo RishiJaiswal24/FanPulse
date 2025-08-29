@@ -66,8 +66,8 @@ const Page = () => {
             />
             <>
                 <div className='min-h-screen flex flex-col w-full'>
-                    <div className='flex justify-center items-center w-full mt-12 text-4xl font-bold text-white'>
-                        Fan Pulse — Developer Feedback
+                    <div className='flex justify-center items-center p-3.5 w-full mt-12 text-4xl font-bold text-white'>
+                        Fan Pulse  Developer Feedback
                     </div>
 
                     <div className='flex justify-center items-center w-full mt-12 mb-10'>
@@ -87,7 +87,7 @@ const Page = () => {
                                     <div className="font-bold text-2xl text-white">
                                         Share Your Feedback with the Developer
                                     </div>
-                                    <div className="flex my-3">
+                                    <div className="flex my-3 items-end">
                                         <textarea
                                             className="w-[60vw] h-[80px] md:h-[120px] md:max-h-[300px] py-2 text-gray-200 bg-slate-800 rounded-lg p-3 resize-none overflow-y-auto focus:outline-none focus:ring-2 focus:ring-purple-500"
                                             name="feedback"

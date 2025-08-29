@@ -19,11 +19,21 @@ const Page = () => {
       <h2 className="text-4xl md:text-5xl font-extrabold text-white text-center drop-shadow-lg">
         Welcome to <span className="text-purple-400">Fan Pulse</span>
       </h2>
-      <p className="text-gray-400 mt-3 mb-8 text-center">
+      <p className="text-gray-400 mt-3 mb-6 text-center">
         Sign in to continue to your workspace
       </p>
 
-      <div className=" bg-slate-900 shadow-xl shadow-slate-800 rounded-2xl p-8 w-full max-w-md">
+      {/* Recruiter Note */}
+      <div className="bg-yellow-200 text-gray-800 text-sm p-3 rounded-lg shadow mb-6 max-w-md text-center">
+        <p>
+          <strong>Note for recruiters:</strong>  
+          You can use <span className="font-semibold">Guest Login</span> to be redirected to the demo page (<code>/RishiJaiswal</code>).  
+          Some features will be limited.  
+          For full access, please sign in using <span className="font-semibold">Google</span> or <span className="font-semibold">GitHub</span>.
+        </p>
+      </div>
+
+      <div className="bg-slate-900 shadow-xl shadow-slate-800 rounded-2xl p-8 w-full max-w-md">
         <div className="flex flex-col gap-4">
           
           <button
@@ -50,9 +60,9 @@ const Page = () => {
             Continue with GitHub
           </button>
 
-          {/* Guest */}
+          {/* Guest Login with Redirect to /RishiJaiswal */}
           <button
-            onClick={() => signIn("credentials", { callbackUrl: "/about"  })}
+            onClick={() => signIn("credentials", { callbackUrl: "/RishiJaiswal" })}
             className="cursor-pointer flex items-center justify-center gap-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white px-6 py-3 rounded-xl font-medium shadow-md hover:opacity-90 transition"
           >
             <svg
@@ -72,7 +82,6 @@ const Page = () => {
         </div>
       </div>
 
-      {/* Footer */}
       <p className="text-gray-500 text-sm mt-6">
         By signing in, you agree to our{" "}
         <span className="text-blue-400 hover:underline cursor-pointer">

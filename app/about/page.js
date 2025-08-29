@@ -1,17 +1,16 @@
 "use client"
 import React, { useEffect } from "react";
 import Link from "next/link";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function About() {
   useEffect(() => {
     document.title = "About – Fan Pulse"
   }, [])
 
-
   return (
     <>
       <div className="min-h-screen flex flex-col items-center py-12 px-4">
-
         <h1 className="text-4xl font-bold text-white mb-10 text-center">
           About Us
         </h1>
@@ -73,13 +72,38 @@ export default function About() {
           <h2 className="text-2xl flex justify-center underline font-bold mb-4">
             Built with Passion
           </h2>
-          <p className="text-gray-300 text-lg leading-relaxed text-center">
+          <p className="text-gray-300 text-lg leading-relaxed text-center mb-10">
             FanPulse is more than just a demo project — it&apos;s a learning journey in
             full-stack development, payment gateway integration, and modern UI
             design. As a creator myself, I understand how valuable direct audience
             support can be, and FanPulse is my way of making that process easier
             for everyone.
           </p>
+
+          <div className="bg-white h-1 opacity-10 w-full mb-10"></div>
+
+          {/* Connect Section */}
+          <h2 className="text-2xl flex justify-center underline font-bold mb-4">
+            Connect with Me
+          </h2>
+          <div className="flex justify-center gap-6">
+            <a
+              href="https://github.com/RishiJaiswal24/FanPulse"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-purple-400 text-3xl transition-colors"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/rishi-jaiswal-037615229/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-purple-400 text-3xl transition-colors"
+            >
+              <FaLinkedin />
+            </a>
+          </div>
 
         </div>
       </div>
