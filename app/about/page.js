@@ -82,7 +82,6 @@ export default function About() {
 
           <div className="bg-white h-1 opacity-10 w-full mb-10"></div>
 
-          {/* Connect Section */}
           <h2 className="text-2xl flex justify-center underline font-bold mb-4">
             Connect with Me
           </h2>

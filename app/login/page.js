@@ -23,7 +23,6 @@ const Page = () => {
         Sign in to continue to your workspace
       </p>
 
-      {/* Recruiter Note */}
       <div className="bg-yellow-200 text-gray-800 text-sm p-3 rounded-lg shadow mb-6 max-w-md text-center">
         <p>
           <strong>Note for recruiters:</strong>  
@@ -59,8 +58,6 @@ const Page = () => {
             />  
             Continue with GitHub
           </button>
-
-          {/* Guest Login with Redirect to /RishiJaiswal */}
           <button
             onClick={() => signIn("credentials", { callbackUrl: "/RishiJaiswal" })}
             className="cursor-pointer flex items-center justify-center gap-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white px-6 py-3 rounded-xl font-medium shadow-md hover:opacity-90 transition"
