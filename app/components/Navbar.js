@@ -65,13 +65,14 @@ const Navbar = () => {
               <div className="md:block hidden">
                 <ul className="flex" >
                   <li><Link href={`/`} className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Home</Link></li>
-
                   {session.user.role !== "guest" ? (<>
                     <li><Link href={"/dashboard"} className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Dashboard</Link></li>
                     {session?.user?.name && (
                       <li><Link href={`/${session.user.name}`} className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Your Page</Link></li>
                     )}
                   </>) : null}
+                  <li><Link href={`/creators`} className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Creators</Link></li>
+                    
 
                   {session.user.role !== "guest" ? (<li>
                     <button
@@ -117,6 +118,7 @@ const Navbar = () => {
                       <li><Link href={`/${session.user.name}`} className="block px-4 py-2 hover:bg-slate-800 hover:font-bold">Your Page</Link></li>
                     </>
                   ) : null}
+                  <li><Link href="/creators" className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Creators</Link></li>
                   <li><Link href="/feedback" className="block px-4 py-2 hover:bg-slate-800 cursor-pointer hover:font-bold">Feedbacks</Link></li>
                   <li>
                     <button
