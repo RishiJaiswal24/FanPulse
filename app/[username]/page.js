@@ -5,7 +5,7 @@ import connectDB from '../db/connectDb';
 import User from '../models/User';
 
 export default async function Page({ params }) {
-  const { username } = params;
+  const { username } =await params;
 
   await connectDB();
   let u = await User.findOne({ username });
@@ -16,9 +16,8 @@ export default async function Page({ params }) {
   return <PaymentPage username={username} />;
 }
 
-// ✅ Use generateMetadata to get username dynamically
 export async function generateMetadata({ params }) {
-  const { username } = params;
+  const { username } =await params;
   return {
     title: `${username} – Fan Pulse`,
     description: `${username}'s official Fan Pulse page. Showcase your work, connect with fans, and receive direct support.`,
